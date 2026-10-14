@@ -1,0 +1,106 @@
+DATALOADER:
+  BATCH_SIZE: 4
+  NUM_WORKERS: 8
+  PIN_MEMORY: false
+DATASETS:
+  DISPERSION_DIRECTION:
+  BAND_START: 0
+  MASK_TYPE: mask_3d_shift
+  STEP:
+  TEST:
+    MASK_PATH: ''
+    PATH: ''
+  TEST_INDOOR:
+    MASK_PATH: ''
+    PATH: ''
+  TEST_OUTDOOR:
+    MASK_PATH: ''
+    PATH: ''
+  TRAIN:
+    BAND_START: 0
+    AUGMENT: true
+    CROP_SIZE:
+    - 256
+    - 256
+    ITERATION: 1000
+    MASK_PATH: ../datasets/CSI/TSA_simu_data/mask_3d_shift.mat
+    PATHS:
+    - ../datasets/CSI/cave_1024_28
+    RANDOM_MASK: false
+    WITH_NOISE: false
+  VAL:
+    MASK_PATH: ../datasets/CSI/TSA_simu_data/mask_3d_shift.mat
+    PATH: ../datasets/CSI/TSA_simu_data/Truth/
+  VAL_INDOOR:
+    MASK_PATH: ''
+    PATH: ''
+  VAL_OUTDOOR:
+    MASK_PATH: ''
+    PATH: ''
+  WAVE_LENS: 20
+  WITH_PAN: true
+DEBUG: false
+DETERMINISTIC: true
+EXPERIMENTAL_TYPE: simulation
+LOSSES:
+  CHARBONNIER_EPS: 0.001
+  CHARBONNIER_WEIGHT: 1.0
+  CHAR_EPS: 0.001
+  FREQ_LOSS: false
+  FREQ_TYPE: l1
+  FREQ_WEIGHT: 0.05
+  L1_LOSS: true
+  L1_WEIGHT: 1.0
+  L2_LOSS: false
+  L2_WEIGHT: 0.0
+  SAM_EPS: 1.0e-08
+  SAM_LOSS: true
+  SAM_USE_ARCCOS: false
+  SAM_WEIGHT: 0.1
+  SPECTRAL_TV_LOSS: true
+  SPECTRAL_TV_ORDER: 1
+  SPECTRAL_TV_WEIGHT: 0.05
+  SPEC_TV_LOSS: false
+  SPEC_TV_WEIGHT: 0.0
+  SSIM_LOSS: true
+  SSIM_WEIGHT: 0.2
+  SSIM_WINDOW_SIZE: 11
+  STAGED_TOTAL_EPOCHS: 100
+  TV_LOSS: false
+  TV_WEIGHT: 0.0
+  TYPE: hybrid
+MODEL:
+  SFUN:
+    ABL_FFT_MODE: nofft_spatial
+    ABL_FFT_USE_SPEC_ATT: true
+    ABL_FORCE_BACKBONE: mamba
+    ABL_LKK_KERNEL: 21
+    DIM: 20
+    FFN_EXPAND: 2.66
+    FFN_NAME: Gated_Dconv_FeedForward
+    IN_DIM: 28
+    LAYERNORM_TYPE: WithBias
+    NUM_BLOCKS:
+    - 3
+    - 1
+    - 1
+    - 1
+    - 1
+    OUT_DIM: 28
+    SHARE_PARAMS: true
+    STAGES: 1
+    S_MSAB_NUM_BLOCKS: 1
+    X_MSAB_NUM_BLOCKS: 1
+
+
+OPTIMIZER:
+  GRAD_CLIP: true
+  LR: 0.0003
+  MAX_EPOCH: 500
+OUTPUT_DIR: ./outputs/train/
+PRETRAINED_CKPT_PATH: ./checkpoints/sfun.pth
+RESUME_CKPT_PATH: ''
+SCHEDULER:
+  STEP: step
+  TYPE: ''
+SEED:
